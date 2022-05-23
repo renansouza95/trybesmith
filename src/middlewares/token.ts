@@ -7,8 +7,9 @@ const jwtConfig: SignOptions = {
   algorithm: 'HS256',
 };
 
-export function generateToken(id: number) {
-  sign({ id }, JWT_SECRET, jwtConfig);
+export function generateToken(id: number, username: string) {
+  // const payload = { id, username };
+  return sign({ id, username }, JWT_SECRET, jwtConfig);
 }
 
 export function validateToken(authorization: string) {

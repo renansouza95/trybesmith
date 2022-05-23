@@ -1,7 +1,7 @@
 import { Pool } from 'mysql2/promise';
 import IOrder from '../interfaces/order';
 
-export default class UserModel {
+export default class OrderModel {
   connection: Pool;
 
   constructor(connection: Pool) {
