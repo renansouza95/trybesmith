@@ -8,7 +8,6 @@ const jwtConfig: SignOptions = {
 };
 
 export function generateToken(id: number, username: string) {
-  // const payload = { id, username };
   return sign({ id, username }, JWT_SECRET, jwtConfig);
 }
 
