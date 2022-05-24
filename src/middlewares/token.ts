@@ -12,5 +12,5 @@ export function generateToken(id: number, username: string) {
 }
 
 export function validateToken(authorization: string) {
-  verify(authorization, JWT_SECRET);
+  return verify(authorization, JWT_SECRET);
 }

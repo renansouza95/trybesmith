@@ -7,9 +7,9 @@ export default class ProductController {
   public getAll = async (_req: Request, res: Response) => {
     try {
       const products = await this.productService.getAll();
-      res.status(200).json(products);
+      return res.status(200).json(products);
     } catch (error) {
-      res.status(500).json(error);
+      return res.status(500).json(error);
     }
   };
 
@@ -17,9 +17,9 @@ export default class ProductController {
     try {
       const product = req.body;
       const productCreated = await this.productService.create(product);
-      res.status(201).json(productCreated);
+      return res.status(201).json(productCreated);
     } catch (error) {
-      res.status(500).json(error);
+      return res.status(500).json(error);
     }
   };
 }

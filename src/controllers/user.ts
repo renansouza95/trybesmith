@@ -8,9 +8,9 @@ export default class UserController {
     try {
       const user = req.body;
       const token = await this.userService.create(user);
-      res.status(201).json({ token });
+      return res.status(201).json({ token });
     } catch (error) {
-      res.status(500).json(error);
+      return res.status(500).json(error);
     }
   };
 }

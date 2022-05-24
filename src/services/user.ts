@@ -12,7 +12,7 @@ export default class UserService {
 
   public async create(user: IUser) {
     const { id, username } = await this.model.create(user);
-    const ID = id as unknown as number; // https://stackoverflow.com/questions/53813188/how-can-i-cast-custom-type-to-primitive-type
+    const ID = id as number; // https://stackoverflow.com/questions/53813188/how-can-i-cast-custom-type-to-primitive-type
     const token = generateToken(ID, username);
     return token;
   }
