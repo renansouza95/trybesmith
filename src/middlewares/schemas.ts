@@ -11,3 +11,7 @@ export const ProductSchema = Joi.object({
   name: Joi.string().min(3).required(),
   amount: Joi.string().min(3).required(),
 });
+
+// export const OrderSchema = Joi.object({
+//   productsIds: Joi.array().items(Joi.number().required()).min(1).required(),
+// });

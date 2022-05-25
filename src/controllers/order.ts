@@ -12,4 +12,16 @@ export default class OrderController {
       return res.status(500).json(error);
     }
   };
+
+  public create = async (req: Request, res: Response) => {
+    try {
+      const { authorization } = req.headers;
+      const { productsIds } = req.body;
+      const token = authorization as unknown as string;
+      const response = await this.orderService.create(token, productsIds);
+      return res.status(201).json(response);
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+  };
 }

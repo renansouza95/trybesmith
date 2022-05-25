@@ -33,4 +33,14 @@ export default class ProductModel {
     const [rows] = result;
     return rows as IProduct[];
   }
+
+  public async update(orderId: number, productId: number): Promise<IProduct[]> {
+    const result = await this.connection.execute(
+      'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?',
+      [orderId, productId],
+    );
+    const [rows] = result;
+    const product = rows as IProduct[];
+    return product;
+  }
 }

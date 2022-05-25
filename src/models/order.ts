@@ -1,4 +1,4 @@
-import { Pool } from 'mysql2/promise';
+import { Pool, ResultSetHeader } from 'mysql2/promise';
 import IOrder from '../interfaces/order';
 import ProductModel from './product';
 
@@ -26,10 +26,18 @@ export default class OrderModel {
     return joinedArrays as IOrder[];
   }
 
-  // public async create(order: IOrder): Promise<IOrder> {
-  //   const { productsId } = order;
-  //   const result = await this.connection.execute<ResultSetHeader>(
-  //     'INSERT INTO Trybesmith.Orders (productsId)'
-  //   )
-  // }
+  public async create(id: number, productsIds: number[]): Promise<IOrder> {
+    const createOrder = await this.connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.Orders (userId) VALUES (?)',
+      [id],
+    );
+    console.log(createOrder);
+    const [dataInserted] = createOrder;
+    const { insertId } = dataInserted;
+    productsIds.forEach(async (product) => {
+      await this.model.update(insertId, product);
+    });
+    const response = { userId: id, productsIds };
+    return response;
+  }
 }

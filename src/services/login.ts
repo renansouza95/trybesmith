@@ -16,8 +16,8 @@ export default class LoginService {
     if (!response) {
       return 'Username or password invalid';
     }
-    const { id } = user;
-    const ID = id as number;
+    const { id } = response;
+    const ID = id as unknown as number;
     const token = generateToken(ID, username);
     return token;
   }
